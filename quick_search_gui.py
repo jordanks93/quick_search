@@ -14,8 +14,10 @@ def run_search():
     location = location_var.get().strip()
 
     queries = {
+        "Pacer": name,
         "OFAC": name,
         "NSOPW": name,
+        "SOS": business_name,
         "Zillow": address + " " + location,
         "Safer": business_name,
         "Truck Paper": asset,
@@ -24,9 +26,10 @@ def run_search():
     }
 
     SEARCH_SITES = {
-        # "OFAC": "https://sanctionssearch.ofac.treas.gov/",
-        # "NSOPW": "https://www.nsopw.gov/en/search-results?searchType=all&query={query}",
-        # SOS Business Entity Searches
+        "Pacer": "https://pcl.uscourts.gov/pcl/pages/search/findBankruptcy.jsf",
+        "OFAC": "https://sanctionssearch.ofac.treas.gov/",
+        "NSOPW": "https://www.nsopw.gov/",
+        "SOS": "https://businesssearch.ohiosos.gov/",
         "Zillow": "https://www.zillow.com/homes/{query}_rb/",
         "Safer": "https://safer.fmcsa.dot.gov/keywordx.asp?searchstring=%2A{query}%2A&SEARCHTYPE=",
         "Truck Paper": "https://www.truckpaper.com/listings?keywords={query}",
