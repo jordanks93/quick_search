@@ -15,7 +15,7 @@ def run_search():
     queries = {
         "OFAC": name,
         "NSOPW": name,
-        "Zillow": address,
+        "Zillow": address + " " + location,
         "Safer": business_name,
         "Truck Paper": asset,
         "Google": name + " " + location,
@@ -46,8 +46,17 @@ def run_search():
             subprocess.Popen(f'start chrome --new-tab "{url}"', shell=True)
 
 
+def clear_fields():
+    name_var.set("")
+    address_var.set("")
+    asset_var.set("")
+    business_name_var.set("")
+    location_var.set("")
+
+
 root = tk.Tk()
 root.title("Quick Search")
+root.iconbitmap("HCS Logo.ico")
 
 mainframe = ttk.Frame(root, padding="10")
 mainframe.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
@@ -73,6 +82,7 @@ ttk.Entry(mainframe, textvariable=business_name_var, width=40).grid(row=3, colum
 ttk.Label(mainframe, text="City and State:").grid(row=4, column=0, sticky=tk.W)
 ttk.Entry(mainframe, textvariable=location_var, width=40).grid(row=4, column=1)
 
-ttk.Button(mainframe, text="Search", command=run_search).grid(row=5, column=0, columnspan=2, pady=10)
+ttk.Button(mainframe, text="Search", command=run_search).grid(row=5, column=0, pady=10)
+ttk.Button(mainframe, text="Clear", command=clear_fields).grid(row=5, column=1, pady=10)
 
 root.mainloop()
