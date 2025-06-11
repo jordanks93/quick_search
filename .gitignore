@@ -7,3 +7,8 @@ __pycache__/
 .DS_Store
 *.lnk
 *.ico
+build/
+dist/
+quick_search_gui.spec
+quick_search_installer.zip
+quick_search_installer/
