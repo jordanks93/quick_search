@@ -3,6 +3,7 @@ from tkinter import ttk
 import urllib.parse
 import subprocess
 import time
+import tkinter.font as tkfont
 
 
 def run_search():
@@ -64,11 +65,24 @@ def clear_fields():
 
 
 root = tk.Tk()
-root.title("Quick Search")
-root.iconbitmap("HCS Logo.ico")
+root.title("Highway Commercial Services, Inc.")
+root.minsize(500, 320)
+# Set window icon if available
+# try:
+#     root.iconbitmap("HCS Logo.ico")
+# except Exception:
+#     pass
 
-mainframe = ttk.Frame(root, padding="10")
+# Set a consistent font
+default_font = tkfont.nametofont("TkDefaultFont")
+default_font.configure(size=11, family="Segoe UI")
+
+mainframe = ttk.Frame(root, padding="20 15 20 15")
 mainframe.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+
+# Add a title label
+title_label = ttk.Label(mainframe, text="Quick Search Tool", font=("Segoe UI", 16, "bold"))
+title_label.grid(row=0, column=0, columnspan=2, pady=(0, 15))
 
 name_var = tk.StringVar()
 address_var = tk.StringVar()
@@ -77,25 +91,38 @@ business_name_var = tk.StringVar()
 business_address_var = tk.StringVar()
 location_var = tk.StringVar()
 
-ttk.Label(mainframe, text="Customer Name:").grid(row=0, column=0, sticky=tk.W)
-ttk.Entry(mainframe, textvariable=name_var, width=40).grid(row=0, column=1)
+row = 1
 
-ttk.Label(mainframe, text="Home Address:").grid(row=1, column=0, sticky=tk.W)
-ttk.Entry(mainframe, textvariable=address_var, width=40).grid(row=1, column=1)
+ttk.Label(mainframe, text="Customer Name:").grid(row=row, column=0, sticky=tk.W, pady=3)
+ttk.Entry(mainframe, textvariable=name_var, width=45).grid(row=row, column=1, pady=3)
+row += 1
+ttk.Label(mainframe, text="Home Address:").grid(row=row, column=0, sticky=tk.W, pady=3)
+ttk.Entry(mainframe, textvariable=address_var, width=45).grid(row=row, column=1, pady=3)
+row += 1
+ttk.Label(mainframe, text="City and State:").grid(row=row, column=0, sticky=tk.W, pady=3)
+ttk.Entry(mainframe, textvariable=location_var, width=45).grid(row=row, column=1, pady=3)
+row += 1
+ttk.Label(mainframe, text="Business Name:").grid(row=row, column=0, sticky=tk.W, pady=3)
+ttk.Entry(mainframe, textvariable=business_name_var, width=45).grid(row=row, column=1, pady=3)
+row += 1
+ttk.Label(mainframe, text="Business Address:").grid(row=row, column=0, sticky=tk.W, pady=3)
+ttk.Entry(mainframe, textvariable=business_address_var, width=45).grid(row=row, column=1, pady=3)
+row += 1
+ttk.Label(mainframe, text="Asset:").grid(row=row, column=0, sticky=tk.W, pady=3)
+ttk.Entry(mainframe, textvariable=asset_var, width=45).grid(row=row, column=1, pady=3)
+row += 1
 
-ttk.Label(mainframe, text="City and State:").grid(row=2, column=0, sticky=tk.W)
-ttk.Entry(mainframe, textvariable=location_var, width=40).grid(row=2, column=1)
+# Add a separator
+separator = ttk.Separator(mainframe, orient='horizontal')
+separator.grid(row=row, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=10)
+row += 1
 
-ttk.Label(mainframe, text="Business Name:").grid(row=3, column=0, sticky=tk.W)
-ttk.Entry(mainframe, textvariable=business_name_var, width=40).grid(row=3, column=1)
+ttk.Button(mainframe, text="Search", command=run_search).grid(row=row, column=0, pady=10, sticky=tk.E)
+ttk.Button(mainframe, text="Clear", command=clear_fields).grid(row=row, column=1, pady=10, sticky=tk.W)
 
-ttk.Label(mainframe, text="Business Address:").grid(row=4, column=0, sticky=tk.W)
-ttk.Entry(mainframe, textvariable=business_address_var, width=40).grid(row=4, column=1)
-
-ttk.Label(mainframe, text="Asset:").grid(row=5, column=0, sticky=tk.W)
-ttk.Entry(mainframe, textvariable=asset_var, width=40).grid(row=5, column=1)
-
-ttk.Button(mainframe, text="Search", command=run_search).grid(row=6, column=0, pady=10)
-ttk.Button(mainframe, text="Clear", command=clear_fields).grid(row=6, column=1, pady=10)
+root.columnconfigure(0, weight=1)
+root.rowconfigure(0, weight=1)
+mainframe.columnconfigure(0, weight=1)
+mainframe.columnconfigure(1, weight=1)
 
 root.mainloop()
