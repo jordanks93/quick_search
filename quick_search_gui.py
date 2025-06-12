@@ -67,11 +67,12 @@ def clear_fields():
 root = tk.Tk()
 root.title("Highway Commercial Services, Inc.")
 root.minsize(500, 320)
+
 # Set window icon if available
-# try:
-#     root.iconbitmap("HCS Logo.ico")
-# except Exception:
-#     pass
+try:
+    root.iconbitmap("HCS Logo.ico")
+except Exception:
+    pass
 
 # Set a consistent font
 default_font = tkfont.nametofont("TkDefaultFont")
