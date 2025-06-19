@@ -23,6 +23,7 @@ SEARCH_SITES = {
     "SOS List": "https://www.llcuniversity.com/50-secretary-of-state-sos-business-entity-search/",
     "Zillow": "https://www.zillow.com/homes/{query}_rb/",
     "Safer": "https://safer.fmcsa.dot.gov/keywordx.asp?searchstring=%2A{query}%2A&SEARCHTYPE=",
+    #https://www.truckpaper.com/listings/search?Category=16045&Model=CASCADIA%20126&Manufacturer=FREIGHTLINER&Year=2021%2A2025&Mileage=100000%2A150000&Sleeper=Raised%20Roof%20Sleeper&Engine=CUMMINS&keywords=2025%20Cascadia
     "Truck Paper": "https://www.truckpaper.com/listings?keywords={query}",
     "Google Customer": "https://www.google.com/search?q={query}",
     "Google Business": "https://www.google.com/search?q={query}",
@@ -55,9 +56,10 @@ def run_search():
         if first:
             subprocess.Popen(f'start chrome --new-window "{url}"', shell=True)
             first = False
-            time.sleep(0.5)
+            time.sleep(0.01)
         else:
             subprocess.Popen(f'start chrome --new-tab "{url}"', shell=True)
+            time.sleep(0.01)
 
 def clear_fields():
     for var in field_vars.values():
