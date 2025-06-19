@@ -12,7 +12,15 @@ FIELDS = [
     {"key": "location", "label": "City and State"},
     {"key": "business_name", "label": "Business Name"},
     {"key": "business_address", "label": "Business Address"},
-    {"key": "asset", "label": "Asset"},
+    {"key": "category", "label": "Category"},
+    {"key": "model", "label": "Model"},
+    {"key": "make", "label": "Make"},
+    {"key": "model_year", "label": "Model Year"},
+    {"key": "engine", "label": "Engine"},
+    {"key": "sleeper type", "label": "Sleeper Type"},
+    {"key": "rear_axles", "label": "# of Rear Axles"},
+    {"key": "mileage", "label": "Mileage"},
+    {"key": "horsepower", "label": "Horsepower"},
 ]
 
 SEARCH_SITES = {
