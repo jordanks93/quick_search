@@ -56,10 +56,10 @@ def run_search():
         if first:
             subprocess.Popen(f'start chrome --new-window "{url}"', shell=True)
             first = False
-            time.sleep(0.01)
+            time.sleep(0.09)
         else:
             subprocess.Popen(f'start chrome --new-tab "{url}"', shell=True)
-            time.sleep(0.01)
+            time.sleep(0.09)
 
 def clear_fields():
     for var in field_vars.values():
