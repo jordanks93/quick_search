@@ -104,5 +104,6 @@ root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 mainframe.columnconfigure(0, weight=1)
 mainframe.columnconfigure(1, weight=1)
+root.bind('<Return>', lambda event: run_search())
 
 root.mainloop()
