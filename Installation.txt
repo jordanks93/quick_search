@@ -1,0 +1,26 @@
+## Installing and Running Quick Search Tool (`quick_search_gui.exe`)
+
+Follow these steps to install and run the Quick Search Tool if you received a ZIP file via Outlook:
+
+1. **Download the ZIP File**
+   - Open the email in Outlook containing the Quick Search Tool ZIP attachment.
+   - Click the attachment and select **Download**. Save it to a location you can find easily (such as your Desktop or Downloads folder).
+
+2. **Extract the ZIP File**
+   - Locate the downloaded ZIP file in File Explorer.
+   - Right-click the ZIP file and select **Extract All...**.
+   - Choose a destination folder and click **Extract**.
+
+3. **Run the Application**
+   - Open the extracted folder.
+   - Double-click `quick_search_gui.exe` to start the Quick Search Tool.
+   - If you see a security warning, click **More info** and then **Run anyway**.
+
+4. **(Optional) Create a Desktop Shortcut**
+   - Right-click `quick_search_gui.exe`.
+   - Select **Send to > Desktop (create shortcut)** for easy access.
+
+**Notes:**
+- No installation is required; you can run the tool directly from the extracted folder.
+- If you encounter any issues, ensure you are running on Windows and have Google Chrome installed.
+- For further help, contact your IT
