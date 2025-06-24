@@ -12,15 +12,15 @@ FIELDS = [
     {"key": "location", "label": "City and State"},
     {"key": "business_name", "label": "Business Name"},
     {"key": "business_address", "label": "Business Address"},
-    {"key": "category", "label": "Category"},
-    {"key": "model", "label": "Model"},
-    {"key": "make", "label": "Make"},
-    {"key": "model_year", "label": "Model Year"},
-    {"key": "engine", "label": "Engine"},
-    {"key": "sleeper type", "label": "Sleeper Type"},
-    {"key": "rear_axles", "label": "# of Rear Axles"},
-    {"key": "mileage", "label": "Mileage"},
-    {"key": "horsepower", "label": "Horsepower"},
+    {"key": "tp_category", "label": "Category"},
+    {"key": "tp_model", "label": "Model"},
+    {"key": "tp_make", "label": "Make"},
+    {"key": "tp_model_year", "label": "Model Year"},
+    {"key": "tp_engine", "label": "Engine"},
+    {"key": "tp_sleeper_type", "label": "Sleeper Type"},
+    {"key": "tp_rear_axles", "label": "# of Rear Axles"},
+    {"key": "tp_mileage", "label": "Mileage"},
+    {"key": "tp_horsepower", "label": "Horsepower"},
 ]
 
 SEARCH_SITES = {
@@ -97,9 +97,12 @@ row = 1
 for field in FIELDS:
     var = tk.StringVar()
     field_vars[field["key"]] = var
-    ttk.Label(mainframe, text=field["label"] + ":").grid(row=row, column=0, sticky=tk.W, pady=3)
-    ttk.Entry(mainframe, textvariable=var, width=45).grid(row=row, column=1, pady=3)
-    row += 1
+
+    # Skip fields that start with "tp_" for Truck Paper
+    if not field["key"].startswith("tp_"):
+        ttk.Label(mainframe, text=field["label"] + ":").grid(row=row, column=0, sticky=tk.W, pady=3)
+        ttk.Entry(mainframe, textvariable=var, width=45).grid(row=row, column=1, pady=3)
+        row += 1
 
 separator = ttk.Separator(mainframe, orient='horizontal')
 separator.grid(row=row, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=10)
