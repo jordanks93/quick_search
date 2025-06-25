@@ -12,15 +12,15 @@ FIELDS = [
     {"key": "location", "label": "City and State"},
     {"key": "business_name", "label": "Business Name"},
     {"key": "business_address", "label": "Business Address"},
-    {"key": "tp_category", "label": "Category"},
-    {"key": "tp_model", "label": "Model"},
-    {"key": "tp_make", "label": "Make"},
-    {"key": "tp_model_year", "label": "Model Year"},
-    {"key": "tp_engine", "label": "Engine"},
-    {"key": "tp_sleeper_type", "label": "Sleeper Type"},
-    {"key": "tp_rear_axles", "label": "# of Rear Axles"},
-    {"key": "tp_mileage", "label": "Mileage"},
-    {"key": "tp_horsepower", "label": "Horsepower"},
+    {"key": "tp_category", "label": "Vehicle Type", "options": ['Truck', 'Trailer', 'Van']},
+    {"key": "tp_model_year", "label": "Model Year", "options": [2025, 2024, 2023]},
+    {"key": "tp_make", "label": "Make", "options": ['Manufacturer X', 'Manufacturer Y']},
+    {"key": "tp_model", "label": "Model", "options": ['Model A', 'Model B']},
+    {"key": "tp_engine", "label": "Engine", "options": ['Engine 1', 'Engine 2']},
+    {"key": "tp_sleeper_type", "label": "Sleeper Type", "options": ['Flat Top', 'Raised Roof']},
+    {"key": "tp_rear_axles", "label": "# of Rear Axles", "options": [1, 2, 3, 4]},
+   # {"key": "tp_mileage", "label": "Mileage"},
+   # {"key": "tp_horsepower", "label": "Horsepower"},
 ]
 
 SEARCH_SITES = {
@@ -82,12 +82,13 @@ try:
 except Exception:
     pass
 
+# Set default font for the application
 default_font = tkfont.nametofont("TkDefaultFont")
 default_font.configure(size=11, family="Segoe UI")
 
+# 2. Create the main frame and title label
 mainframe = ttk.Frame(root, padding="20 15 20 15")
 mainframe.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
-
 title_label = ttk.Label(mainframe, text="Quick Search Tool", font=("Segoe UI", 16, "bold"))
 title_label.grid(row=0, column=0, columnspan=2, pady=(0, 15))
 
@@ -98,7 +99,7 @@ for field in FIELDS:
     var = tk.StringVar()
     field_vars[field["key"]] = var
 
-    # Skip fields that start with "tp_" for Truck Paper
+    # Build the label and entry/combobox for each field, excluding Truck Paper specific fields
     if not field["key"].startswith("tp_"):
         ttk.Label(mainframe, text=field["label"] + ":").grid(row=row, column=0, sticky=tk.W, pady=3)
         ttk.Entry(mainframe, textvariable=var, width=45).grid(row=row, column=1, pady=3)
@@ -109,7 +110,7 @@ separator = ttk.Separator(mainframe, orient='horizontal')
 separator.grid(row=row, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=10)
 row += 1
 
-# Truck Paper specific fields
+'''# Truck Paper specific fields
 truck_paper_fields = [
     {"key": "tp_category", "label": "Vehicle Type", "options": ['Truck', 'Trailer', 'Van']},
     {"key": "tp_model", "label": "Model", "options": ['Model A', 'Model B']},
@@ -118,17 +119,17 @@ truck_paper_fields = [
     {"key": "tp_engine", "label": "Engine", "options": ['Engine 1', 'Engine 2']},
     {"key": "tp_sleeper_type", "label": "Sleeper Type", "options": ['Flat Top', 'Raised Roof']},
     {"key": "tp_rear_axles", "label": "# of Rear Axles", "options": [1, 2, 3, 4]},
-]
+]'''
 
 # Create variables and widgets for Truck Paper specific fields
-for field in truck_paper_fields:
-    var = tk.StringVar()
-    field_vars[field["key"]] = var
+for field in FIELDS:
 
-    ttk.Label(mainframe, text=field["label"] + ":").grid(row=row, column=0, sticky=tk.W, pady=3)
-    cb = ttk.Combobox(mainframe, textvariable=var, values=field["options"], width=45)
-    cb.grid(row=row, column=1, pady=3)
-    row += 1
+    # Build the label and combobox for Truck Paper fields
+    if field["key"].startswith("tp_"):
+        ttk.Label(mainframe, text=field["label"] + ":").grid(row=row, column=0, sticky=tk.W, pady=3)
+        cb = ttk.Combobox(mainframe, textvariable=var, values=field["options"], width=45)
+        cb.grid(row=row, column=1, pady=3)
+        row += 1
 
 # Mileage Range
 ttk.Label(mainframe, text="Mileage Range:").grid(row=row, column=0, sticky=tk.W, pady=3)
@@ -153,12 +154,15 @@ separator = ttk.Separator(mainframe, orient='horizontal')
 separator.grid(row=row, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=10)
 row += 1
 
+# Search and Clear buttons
 ttk.Button(mainframe, text="Search", command=run_search).grid(row=row, column=0, pady=10, sticky=tk.E)
 ttk.Button(mainframe, text="Clear", command=clear_fields).grid(row=row, column=1, pady=10, sticky=tk.W)
 
+# Configure grid weights for resizing
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 mainframe.columnconfigure(0, weight=1)
 mainframe.columnconfigure(1, weight=1)
 
+# Start the GUI event loop
 root.mainloop()
