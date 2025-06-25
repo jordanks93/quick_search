@@ -23,6 +23,7 @@ FIELDS = [
    # {"key": "tp_horsepower", "label": "Horsepower"},
 ]
 
+# 2. Define the search sites and their URL patterns
 SEARCH_SITES = {
     "Pacer": "https://pcl.uscourts.gov/pcl/pages/search/findBankruptcy.jsf",
     "OFAC": "https://sanctionssearch.ofac.treas.gov/",
@@ -37,6 +38,8 @@ SEARCH_SITES = {
     "Google Business": "https://www.google.com/search?q={query}",
 }
 
+# 3. Function to run the search
+# This function will be called when the Search button is clicked
 def run_search():
     # 2. Get all field values from the dictionary
     values = {key: var.get().strip() for key, var in field_vars.items()}
@@ -69,6 +72,8 @@ def run_search():
             subprocess.Popen(f'start chrome --new-tab "{url}"', shell=True)
             time.sleep(0.01)
 
+# 4. Function to clear all fields
+# This function will be called when the Clear button is clicked
 def clear_fields():
     for var in field_vars.values():
         var.set("")
