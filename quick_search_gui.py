@@ -49,7 +49,7 @@ def run_search():
         "SOS List": values["business_name"],
         "Zillow": values["address"] + " " + values["location"],
         "Safer": values["business_name"],
-        "Truck Paper": values["asset"],
+        #"Truck Paper": values["asset"],
         "Google Customer": values["name"] + " " + values["location"],
         "Google Business": values["business_name"] + " " + values["business_address"],
     }
@@ -104,6 +104,51 @@ for field in FIELDS:
         ttk.Entry(mainframe, textvariable=var, width=45).grid(row=row, column=1, pady=3)
         row += 1
 
+# Separator before Truck Paper specific fields
+separator = ttk.Separator(mainframe, orient='horizontal')
+separator.grid(row=row, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=10)
+row += 1
+
+# Truck Paper specific fields
+truck_paper_fields = [
+    {"key": "tp_category", "label": "Vehicle Type", "options": ['Truck', 'Trailer', 'Van']},
+    {"key": "tp_model", "label": "Model", "options": ['Model A', 'Model B']},
+    {"key": "tp_make", "label": "Make", "options": ['Manufacturer X', 'Manufacturer Y']},
+    {"key": "tp_model_year", "label": "Model Year", "options": [2025, 2024, 2023]},
+    {"key": "tp_engine", "label": "Engine", "options": ['Engine 1', 'Engine 2']},
+    {"key": "tp_sleeper_type", "label": "Sleeper Type", "options": ['Flat Top', 'Raised Roof']},
+    {"key": "tp_rear_axles", "label": "# of Rear Axles", "options": [1, 2, 3, 4]},
+]
+
+# Create variables and widgets for Truck Paper specific fields
+for field in truck_paper_fields:
+    var = tk.StringVar()
+    field_vars[field["key"]] = var
+
+    ttk.Label(mainframe, text=field["label"] + ":").grid(row=row, column=0, sticky=tk.W, pady=3)
+    cb = ttk.Combobox(mainframe, textvariable=var, values=field["options"], width=45)
+    cb.grid(row=row, column=1, pady=3)
+    row += 1
+
+# Mileage Range
+ttk.Label(mainframe, text="Mileage Range:").grid(row=row, column=0, sticky=tk.W, pady=3)
+mileage_min_var = tk.StringVar()
+mileage_max_var = tk.StringVar()
+ttk.Entry(mainframe, textvariable=mileage_min_var, width=20).grid(row=row, column=1, sticky=tk.W, pady=3)
+ttk.Label(mainframe, text="to").grid(row=row, column=1, sticky=tk.W, padx=(150, 0))
+ttk.Entry(mainframe, textvariable=mileage_max_var, width=20).grid(row=row, column=1, sticky=tk.E, pady=3)
+row += 1    
+
+# Horsepower Range
+ttk.Label(mainframe, text="Horsepower Range:").grid(row=row, column=0, sticky=tk.W, pady=3)
+hp_min_var = tk.StringVar()
+hp_max_var = tk.StringVar()
+ttk.Entry(mainframe, textvariable=hp_min_var, width=20).grid(row=row, column=1, sticky=tk.W, pady=3)
+ttk.Label(mainframe, text="to").grid(row=row, column=1, sticky=tk.W, padx=(150, 0))
+ttk.Entry(mainframe, textvariable=hp_max_var, width=20).grid(row=row, column=1, sticky=tk.E, pady=3)
+row += 1
+
+# Separator before buttons
 separator = ttk.Separator(mainframe, orient='horizontal')
 separator.grid(row=row, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=10)
 row += 1
