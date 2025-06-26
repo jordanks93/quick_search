@@ -28,8 +28,6 @@ FIELDS = [
     {"key": "tp_engine", "label": "Engine", "options": ["CUMMINS", "DETROIT", "PACCAR", "ISUZU", "VOLVO", "MACK", "HINO", "CATERPILLAR"]},
     {"key": "tp_sleeper_type", "label": "Sleeper Type", "options": ['Raised Roof Sleeper', "Mid Roof Sleeper",]},
     {"key": "tp_rear_axles", "label": "# of Rear Axles", "options": ['Single', 'Tandem', 'Tri', 'Quad', 'Five', 'Six', 'Seven']},
-   # {"key": "tp_mileage", "label": "Mileage"},
-   # {"key": "tp_horsepower", "label": "Horsepower"},
 ]
 
 # 2. Define the search sites and their URL patterns
@@ -62,7 +60,6 @@ def run_search():
         "SOS List": values["business_name"],
         "Zillow": values["address"] + " " + values["location"],
         "Safer": values["business_name"],
-        #"Truck Paper": values["asset"],
         "Truck Paper": {
             "Category": values["tp_category"],
             "ModelGroup": values["tp_model"],
@@ -79,6 +76,7 @@ def run_search():
     }
     print(queries)  # Debugging line to see the queries
 
+    # 3. Open URLs in the default web browser
     def open_url(url, first):
         if first:
             subprocess.Popen(f'start chrome --new-window "{url}"', shell=True)
@@ -89,6 +87,7 @@ def run_search():
             time.sleep(0.01)
             return first
 
+    # Iterate through the SEARCH_SITES and construct URLs
     first = True
     for name, url_pattern in SEARCH_SITES.items():
         query = queries[name]
@@ -111,6 +110,11 @@ def run_search():
 def clear_fields():
     for var in field_vars.values():
         var.set("")
+    #Clear mileage and horsepower ranges
+    mileage_min_var.set("")
+    mileage_max_var.set("")     
+    hp_min_var.set("")
+    hp_max_var.set("")
 
 root = tk.Tk()
 root.title("Highway Commercial Services, Inc.")
