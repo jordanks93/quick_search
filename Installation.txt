@@ -23,4 +23,3 @@ Follow these steps to install and run the Quick Search Tool if you received a ZI
 **Notes:**
 - No installation is required; you can run the tool directly from the extracted folder.
 - If you encounter any issues, ensure you are running on Windows and have Google Chrome installed.
-- For further help, contact your IT
